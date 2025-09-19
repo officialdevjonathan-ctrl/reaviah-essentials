@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaviah Essentials - Pure & Natural Castor Oil</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #656b38; /* Dark olive for body text */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: #ffffff; /* White background for navbar */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar-logo {
+            max-width: 120px;
+            height: auto;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #656b38; /* Dark olive for nav links */
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #878f3b; /* Muted olive on hover */
+        }
+        .nav-buy-button {
+            background: #878f3b; /* Muted olive for button */
+            color: #ffffff; /* White text */
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+        .nav-buy-button:hover {
+            background: #656b38; /* Dark olive on hover */
+            color: #ffffff;
+        }
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #656b38;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #ffffff;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Logo */
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin: 0 auto 1rem;
+        }
+
+        /* Full Width Banner */
+        .banner {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://via.placeholder.com/1920x1080/878f3b/ffffff?text=Premium+Castor+Oil') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff; /* White for text */
+            flex-direction: column;
+            margin-top: 80px; /* Offset for fixed navbar */
+        }
+        .banner .logo {
+            max-width: 200px;
+        }
+        .banner-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        .banner-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #878f3b; /* Muted olive for button */
+            color: #ffffff; /* White text */
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        .cta-button:hover {
+            background: #656b38; /* Dark olive on hover */
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Uses Section */
+        .uses {
+            padding: 80px 0;
+            background: #ffffff; /* White background */
+        }
+        .uses h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #656b38; /* Dark olive for heading */
+        }
+        .uses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .use-card {
+            background: #ffffff; /* White card background */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .use-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .use-card i {
+            font-size: 3rem;
+            color: #878f3b; /* Muted olive for icons */
+            margin-bottom: 1rem;
+        }
+        .use-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #656b38; /* Dark olive for card titles */
+        }
+
+        /* Store Section */
+        .store {
+            padding: 80px 0;
+            background: #f9f9f9; /* Light gray to contrast white cards */
+        }
+        .store h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #656b38; /* Dark olive for heading */
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: #ffffff; /* White card background */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: #ddd url('https://via.placeholder.com/300x200/878f3b/ffffff?text=100ml+Castor+Oil') center/cover;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #656b38; /* Dark olive for product title */
+        }
+        .product-price {
+            font-size: 2rem;
+            color: #878f3b; /* Muted olive for price */
+            margin-bottom: 1rem;
+        }
+        .buy-button {
+            background: #878f3b; /* Muted olive for button */
+            color: #ffffff; /* White text */
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+        .buy-button:hover {
+            background: #656b38; /* Dark olive on hover */
+        }
+        .cart-notification {
+            display: none;
+            position: fixed;
+            top: 100px; /* Adjusted for navbar */
+            right: 20px;
+            background: #878f3b; /* Muted olive for notification */
+            color: #ffffff; /* White text */
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        /* Footer */
+        footer {
+            background: #656b38; /* Dark olive for footer */
+            color: #ffffff; /* White text */
+            text-align: center;
+            padding: 2rem 0;
+        }
+        footer .logo {
+            max-width: 120px;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+            .banner-content p {
+                font-size: 1.2rem;
+            }
+            .logo {
+                max-width: 120px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <img src="logo.png" alt="Reaviah Essentials Logo" class="navbar-logo">
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#store" class="nav-buy-button">BUY NOW</a>
+                <a href="#resources">Resources</a>
+                <a href="#behind-the-scenes">Behind the Scenes</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <section class="banner" id="home">
+        <img src="logo.png" alt="Reaviah Essentials Logo" class="logo">
+        <div class="banner-content">
+            <h1>Pure Castor Oil Essentials</h1>
+            <p>Discover the natural power of cold-pressed castor oil for hair, skin, and wellness.</p>
+            <a href="#store" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Uses Section -->
+    <section class="uses">
+        <div class="container">
+            <h2>Benefits & Uses</h2>
+            <div class="uses-grid">
+                <div class="use-card">
+                    <i class="fas fa-spa"></i>
+                    <h3>Hair Growth</h3>
+                    <p>Promotes thicker, healthier hair by nourishing the scalp and reducing breakage.</p>
+                </div>
+                <div class="use-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Skin Care</h3>
+                    <p>Hydrates and soothes skin, ideal for moisturizing and reducing inflammation.</p>
+                </div>
+                <div class="use-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Wellness</h3>
+                    <p>Supports detoxification and joint relief with its anti-inflammatory properties.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section class="store" id="store">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <h3>100ml Pure Castor Oil</h3>
+                        <p class="product-price">$12.99</p>
+                        <button class="buy-button" onclick="addToCart('100ml Pure Castor Oil', 12.99)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <!-- Add more products here if needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification" id="cartNotification">
+        Item added to cart!
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <img src="logo.png" alt="Reaviah Essentials Logo" class="logo">
+            <p>&copy; 2025 Reaviah Essentials. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        });
+
+        // Add to cart functionality
+        function addToCart(productName, price) {
+            console.log(`Added ${productName} for $${price} to cart`);
+            const notification = document.getElementById('cartNotification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+            document.getElementById('store').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scrolling for CTA and nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                const navLinks = document.getElementById('navLinks');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
