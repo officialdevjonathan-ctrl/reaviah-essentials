@@ -3,404 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reaviah Essentials - Pure & Natural Castor Oil</title>
+    <title>Reaviah Essentials - Pure Castor Oil</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
-        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        body {
             font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #656b38; /* Dark olive for body text */
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        /* Navigation Bar */
-        .navbar {
-            background: #ffffff; /* White background for navbar */
+        body {
+            background-color: #ffffff;
+            color: #656b38;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            font-weight: bold;
+            color: #878f3b;
+            position: relative;
+            background-color: #f5f5f5;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 100px;
+            opacity: 0.7;
+        }
+
+        .leaf1 { top: 20%; left: 10%; transform: rotate(15deg); }
+        .leaf2 { top: 40%; right: 15%; transform: rotate(-20deg); }
+        .leaf3 { bottom: 25%; left: 30%; transform: rotate(5deg); }
+
+        /* Falling Seeds */
+        #particles {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-        }
-        .navbar .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .navbar-logo {
-            max-width: 120px;
-            height: auto;
-        }
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #656b38; /* Dark olive for nav links */
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #878f3b; /* Muted olive on hover */
-        }
-        .nav-buy-button {
-            background: #878f3b; /* Muted olive for button */
-            color: #ffffff; /* White text */
-            padding: 8px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: background 0.3s ease;
-        }
-        .nav-buy-button:hover {
-            background: #656b38; /* Dark olive on hover */
-            color: #ffffff;
-        }
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: #656b38;
-            cursor: pointer;
-        }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: #ffffff;
-                padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-            }
-        }
-
-        /* Logo */
-        .logo {
-            max-width: 150px;
-            height: auto;
-            margin: 0 auto 1rem;
-        }
-
-        /* Full Width Banner */
-        .banner {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://via.placeholder.com/1920x1080/878f3b/ffffff?text=Premium+Castor+Oil') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #ffffff; /* White for text */
-            flex-direction: column;
-            margin-top: 80px; /* Offset for fixed navbar */
-        }
-        .banner .logo {
-            max-width: 200px;
-        }
-        .banner-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
-        }
-        .banner-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-        .cta-button {
-            display: inline-block;
-            background: #878f3b; /* Muted olive for button */
-            color: #ffffff; /* White text */
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            transition: background 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-        .cta-button:hover {
-            background: #656b38; /* Dark olive on hover */
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            pointer-events: none;
+            opacity: 0; /* Hidden until triggered */
+            z-index: 1;
         }
 
-        /* Uses Section */
-        .uses {
-            padding: 80px 0;
-            background: #ffffff; /* White background */
-        }
-        .uses h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #656b38; /* Dark olive for heading */
-        }
-        .uses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .use-card {
-            background: #ffffff; /* White card background */
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .use-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        .use-card i {
-            font-size: 3rem;
-            color: #878f3b; /* Muted olive for icons */
-            margin-bottom: 1rem;
-        }
-        .use-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #656b38; /* Dark olive for card titles */
+        .seed {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: url('seed.png') no-repeat center/cover; /* Or brown circle: background-color: #8B4513; border-radius: 50%; */
+            animation: fall 10s linear infinite;
+            opacity: 0.6;
         }
 
-        /* Store Section */
-        .store {
-            padding: 80px 0;
-            background: #f9f9f9; /* Light gray to contrast white cards */
+        @keyframes fall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
         }
-        .store h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #656b38; /* Dark olive for heading */
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        .product-card {
-            background: #ffffff; /* White card background */
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            text-align: center;
-        }
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-        .product-image {
-            width: 100%;
-            height: 200px;
-            background: #ddd url('https://via.placeholder.com/300x200/878f3b/ffffff?text=100ml+Castor+Oil') center/cover;
-        }
-        .product-info {
-            padding: 1.5rem;
-        }
-        .product-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #656b38; /* Dark olive for product title */
-        }
-        .product-price {
-            font-size: 2rem;
-            color: #878f3b; /* Muted olive for price */
-            margin-bottom: 1rem;
-        }
-        .buy-button {
-            background: #878f3b; /* Muted olive for button */
-            color: #ffffff; /* White text */
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s ease;
-            width: 100%;
-        }
-        .buy-button:hover {
-            background: #656b38; /* Dark olive on hover */
-        }
-        .cart-notification {
-            display: none;
+
+        /* Branch */
+        #branch {
             position: fixed;
-            top: 100px; /* Adjusted for navbar */
-            right: 20px;
-            background: #878f3b; /* Muted olive for notification */
-            color: #ffffff; /* White text */
-            padding: 15px;
-            border-radius: 5px;
-            z-index: 1000;
+            top: 0;
+            left: -100px; /* Starts off-screen */
+            width: 200px;
+            opacity: 0;
+            z-index: 2;
         }
 
-        /* Footer */
-        footer {
-            background: #656b38; /* Dark olive for footer */
-            color: #ffffff; /* White text */
+        /* Swipe Overlay */
+        #swipe-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #878f3b; /* Your color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: #ffffff;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        .swipe-leaf {
+            position: absolute;
+            width: 150px;
+            height: auto;
+        }
+
+        .swipe-leaf1 { top: 10%; left: 20%; transform: rotate(10deg); }
+        .swipe-leaf2 { bottom: 15%; right: 25%; transform: rotate(-15deg); }
+
+        /* Bottle Section */
+        #bottle-section {
+            height: 200vh; /* Extra height for scrolling animations */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+
+        #bottle {
+            width: 200px;
+            height: 400px;
+            position: relative;
+            background: url('bottle-outline.png') no-repeat center/cover;
+            overflow: hidden;
+        }
+
+        #liquid {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%; /* Starts empty */
+            background: url('oil-texture.png') repeat; /* Golden oil color: background-color: #DAA520; */
+            transition: height 0.5s; /* For smoothness, but animated via GSAP */
+        }
+
+        .use {
+            position: absolute;
+            background-color: #656b38;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            opacity: 0;
+            transform: scale(0);
             text-align: center;
-            padding: 2rem 0;
-        }
-        footer .logo {
-            max-width: 120px;
-            margin-bottom: 1rem;
         }
 
-        /* Responsive */
+        /* Media Query for Mobile */
         @media (max-width: 768px) {
-            .banner-content h1 {
-                font-size: 2.5rem;
-            }
-            .banner-content p {
-                font-size: 1.2rem;
-            }
-            .logo {
-                max-width: 120px;
-            }
+            #hero { font-size: 3rem; }
+            #swipe-overlay { font-size: 3rem; }
+            .animations { animation-duration: 1s !important; } /* Tone down */
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container">
-            <img src="logo.png" alt="Reaviah Essentials Logo" class="navbar-logo">
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#home">Home</a>
-                <a href="#store" class="nav-buy-button">BUY NOW</a>
-                <a href="#resources">Resources</a>
-                <a href="#behind-the-scenes">Behind the Scenes</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Banner -->
-    <section class="banner" id="home">
-        <img src="logo.png" alt="Reaviah Essentials Logo" class="logo">
-        <div class="banner-content">
-            <h1>Pure Castor Oil Essentials</h1>
-            <p>Discover the natural power of cold-pressed castor oil for hair, skin, and wellness.</p>
-            <a href="#store" class="cta-button">Shop Now</a>
-        </div>
+    <!-- Hero -->
+    <section id="hero">
+        Reaviah Essentials
+        <img class="leaf leaf1" src="leaf.png" alt="Castor Leaf">
+        <img class="leaf leaf2" src="leaf.png" alt="Castor Leaf">
+        <img class="leaf leaf3" src="leaf.png" alt="Castor Leaf">
     </section>
 
-    <!-- Uses Section -->
-    <section class="uses">
-        <div class="container">
-            <h2>Benefits & Uses</h2>
-            <div class="uses-grid">
-                <div class="use-card">
-                    <i class="fas fa-spa"></i>
-                    <h3>Hair Growth</h3>
-                    <p>Promotes thicker, healthier hair by nourishing the scalp and reducing breakage.</p>
-                </div>
-                <div class="use-card">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h3>Skin Care</h3>
-                    <p>Hydrates and soothes skin, ideal for moisturizing and reducing inflammation.</p>
-                </div>
-                <div class="use-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Wellness</h3>
-                    <p>Supports detoxification and joint relief with its anti-inflammatory properties.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Particles (Seeds) -->
+    <div id="particles"></div>
 
-    <!-- Store Section -->
-    <section class="store" id="store">
-        <div class="container">
-            <h2>Our Products</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <div class="product-info">
-                        <h3>100ml Pure Castor Oil</h3>
-                        <p class="product-price">$12.99</p>
-                        <button class="buy-button" onclick="addToCart('100ml Pure Castor Oil', 12.99)">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-                <!-- Add more products here if needed -->
-            </div>
-        </div>
-    </section>
+    <!-- Branch -->
+    <img id="branch" src="branch.png" alt="Castor Branch">
 
-    <!-- Cart Notification -->
-    <div class="cart-notification" id="cartNotification">
-        Item added to cart!
+    <!-- Swipe Overlay (over hero, but positioned absolutely) -->
+    <div id="swipe-overlay">
+        Reaviah Essentials
+        <img class="swipe-leaf swipe-leaf1" src="leaf.png" alt="Swipe Leaf">
+        <img class="swipe-leaf swipe-leaf2" src="leaf.png" alt="Swipe Leaf">
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <img src="logo.png" alt="Reaviah Essentials Logo" class="logo">
-            <p>&copy; 2025 Reaviah Essentials. All rights reserved.</p>
+    <!-- Bottle Section -->
+    <section id="bottle-section">
+        <div id="bottle">
+            <div id="liquid"></div>
         </div>
-    </footer>
+        <!-- Uses (positioned via JS) -->
+        <div class="use">Hair Growth</div>
+        <div class="use">Skin Care</div>
+        <div class="use">Wellness</div>
+        <div class="use">Moisturizing</div>
+        <div class="use">Anti-Inflammatory</div>
+    </section>
 
     <script>
-        // Toggle mobile menu
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        });
+        gsap.registerPlugin(ScrollTrigger);
 
-        // Add to cart functionality
-        function addToCart(productName, price) {
-            console.log(`Added ${productName} for $${price} to cart`);
-            const notification = document.getElementById('cartNotification');
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 3000);
-            document.getElementById('store').scrollIntoView({ behavior: 'smooth' });
+        // Create falling seeds dynamically
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const seed = document.createElement('div');
+            seed.classList.add('seed');
+            seed.style.left = `${Math.random() * 100}vw`;
+            seed.style.animationDelay = `${Math.random() * 10}s`;
+            seed.style.animationDuration = `${5 + Math.random() * 10}s`;
+            particles.appendChild(seed);
         }
 
-        // Smooth scrolling for CTA and nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu if open
-                const navLinks = document.getElementById('navLinks');
-                navLinks.classList.remove('active');
+        // Scroll Triggers
+        ScrollTrigger.create({
+            trigger: "#hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            onEnter: () => {
+                // Seeds falling and branch appear on scroll start
+                gsap.to("#particles", { opacity: 1, duration: 1 });
+                gsap.to("#branch", { left: 0, opacity: 1, duration: 1 });
+            }
+        });
+
+        // Swipe reveal
+        gsap.to("#swipe-overlay", {
+            scrollTrigger: {
+                trigger: "#bottle-section",
+                start: "top bottom",
+                end: "top top",
+                scrub: true
+            },
+            x: "100vw", // Swipe to right
+            ease: "power2.inOut"
+        });
+
+        // Oil pour (fill bottle)
+        gsap.to("#liquid", {
+            scrollTrigger: {
+                trigger: "#bottle-section",
+                start: "top center",
+                end: "center center",
+                scrub: true
+            },
+            height: "100%",
+            ease: "linear"
+        });
+
+        // Circular uses pop up
+        const uses = document.querySelectorAll('.use');
+        const bottle = document.getElementById('bottle');
+        const radius = 150; // Circle radius
+        uses.forEach((use, i) => {
+            const angle = (i / uses.length) * 360;
+            const x = radius * Math.cos(angle * Math.PI / 180);
+            const y = radius * Math.sin(angle * Math.PI / 180);
+            use.style.left = `calc(50% + ${x}px)`;
+            use.style.top = `calc(50% + ${y}px)`;
+            gsap.to(use, {
+                scrollTrigger: {
+                    trigger: "#bottle-section",
+                    start: "center center",
+                    end: "bottom center",
+                    scrub: true
+                },
+                opacity: 1,
+                scale: 1,
+                delay: i * 0.2,
+                ease: "bounce.out"
             });
         });
     </script>
